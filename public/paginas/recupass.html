@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" class="QRHTML">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="/JavaScript/recovery.js" defer></script>
+  <title>Recuperar contraseña · Instituto de Formación Tecnológica</title>
+
+  <!-- Favicon neutral para evitar 404 en dev -->
+  <link rel="icon" href="data:," />
+  <!-- (Opcional) Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- CSS exclusivo de recuperación -->
+  <link rel="stylesheet" href="/styles/style.css" />
+</head>
+<body class="Recup">
+  <!-- Header con imagen institucional -->
+  <div class="header">
+    <img src="/imagenes/recu.png" alt="Imagen institucional" />
+  </div>
+
+  <main class="recup-wrapper">
+    <section class="recup-card" role="form" aria-labelledby="titulo-recuperacion">
+      <div class="left-panel">
+        <h2 id="titulo-recuperacion">¿Olvidaste tu contraseña?</h2>
+        <p>
+          Ingresá tu <strong>correo institucional</strong> o <strong>usuario</strong>. 
+          Si existe una cuenta asociada, te enviaremos instrucciones para restablecerla.
+        </p>
+        <ul class="bullet">
+          <li>No compartas tu código o enlace de recuperación.</li>
+          <li>El enlace tiene un tiempo de validez limitado.</li>
+          <li>Ante dudas, contactá a Soporte del Instituto.</li>
+        </ul>
+      </div>
+
+      <div class="right-panel">
+        <h3>Recuperación de acceso</h3>
+
+        <form id="recupForm" class="recup-form" autocomplete="off">
+          <label for="identifier">Correo institucional o Usuario</label>
+          <input
+            id="identifier"
+            name="identifier"
+            type="text"
+            placeholder="tu usuario o nombre@instituto.edu"
+            inputmode="email"
+            aria-describedby="ayuda-identifier"
+            required
+            class="ml--10 mr-0"
+          />
+          <small id="ayuda-identifier" class="help">
+            Usá el correo que registraste o tu usuario académico.
+          </small>
+
+          <button type="submit" class="send-btn">
+            <i class="fa-solid fa-paper-plane"></i> Enviar instrucciones
+          </button>
+
+          <p id="recupMsg" class="status" aria-live="polite"></p>
+
+          <div class="links">
+            <a href="/index.html" class="back-link">
+              <i class="fa-solid fa-arrow-left-long"></i> Volver a iniciar sesión
+            </a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" class="QRHTML">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restablecer contraseña · Instituto de Formación Tecnológica</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="/styles/style.css" />
+  <script src="/JavaScript/reset.js" defer></script>
+</head>
+<body class="Recup">
+  <div class="header">
+    <img src="/imagenes/recu.png" alt="Imagen institucional" />
+  </div>
+
+  <main class="recup-wrapper">
+    <section class="recup-card" role="form" aria-labelledby="titulo-reset">
+      <div class="left-panel">
+        <h2 id="titulo-reset">Restablecer contraseña</h2>
+        <p>Ingresá una nueva contraseña. Por seguridad, debe tener al menos 8 caracteres.</p>
+        <ul class="bullet">
+          <li>No reutilices contraseñas de otros sitios.</li>
+          <li>Guardala en un gestor seguro.</li>
+        </ul>
+      </div>
+
+      <div class="right-panel">
+        <h3>Nueva contraseña</h3>
+
+        <form id="resetForm" class="recup-form" autocomplete="off">
+          <label for="newpass">Nueva contraseña</label>
+          <input id="newpass" type="password" minlength="8" required placeholder="Mínimo 8 caracteres" />
+
+          <label for="newpass2">Repetir contraseña</label>
+          <input id="newpass2" type="password" minlength="8" required placeholder="Repetí la contraseña" />
+
+          <button type="submit" class="send-btn">
+            <i class="fa-solid fa-lock"></i> Actualizar
+          </button>
+
+          <p id="resetMsg" class="status" aria-live="polite"></p>
+
+          <div class="links">
+            <a href="/index.html" class="back-link">
+              <i class="fa-solid fa-arrow-left-long"></i> Volver a iniciar sesión
+            </a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

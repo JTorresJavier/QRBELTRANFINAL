@@ -1,0 +1,2014 @@
+/* ======================== Estilos generales ======================== */
+/* --- Base usadas por este HTML --- */
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom, #0f75bc 70%, #000);
+  font-family: Arial, sans-serif;
+}
+
+/* Header con imagen superior */
+.header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
+  overflow: hidden;
+}
+.header img{
+  height: 550px;
+  margin-bottom: 130px;
+}
+
+/*////////////////////////////////// --- INDEX.HTML --- ////////////////////////////////////////////////*/
+
+.Login .login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: -300px;
+}
+
+.Login .login-card {
+    display: flex;
+    width: 700px;
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    z-index: 99999;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: -100px;
+}
+
+.Login .left-panel {
+    background: linear-gradient(135deg, #0c8dc9 85%, transparent 60%);
+    color: white;
+    padding: 2rem;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.Login .left-panel h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.Login .right-panel {
+    padding: 2rem;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 60px;
+}
+
+.Login .right-panel h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Formulario (coincide por .Login form ...) */
+
+.Login .login-form{
+  margin-bottom: -25px;
+}
+
+.Login .login-form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.Login .login-form input {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    color: #000;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.Login form input:focus {
+    border-color: #0c8dc9;
+}
+
+/* Botón y link del login */
+
+.Login .signin-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 25px;
+    background: none;
+    border: 2px solid #0c8dc9;
+    color: #0c8dc9;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 0.5rem;
+}
+
+.Login .signin-btn:hover {
+    background: #0c8dc9;
+    color: white;
+}
+
+.Login .forgot-link {
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+    color: #0c8dc9;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.Login .forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* inputs del login (si necesitás anular márgenes horizontales) */
+.input-login { margin-left: 0; margin-right: 0; }
+
+/* mensaje de error sin inline styles */
+.login-error {
+  color: #c0392b;
+  margin: 0;
+  display: none;           /* oculto por defecto */
+}
+.login-error.is-visible {
+  display: block;          /* lo mostramos con clase */
+}
+
+
+/*///////////////////////////////////////////CSS PARA INICIO.HTML//////////////////////////////////////////////////*/
+
+.fondo1{
+  background-color: #00aaff;
+}
+
+.fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+main {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.fondo img {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  filter: blur(4px);
+  object-fit: cover;
+}
+
+/* Navbar (clases propias) */
+.menulogo{
+  height: 70px;
+  border-radius: 15px;
+}
+
+.boton{
+  margin-right: 20px;
+}
+
+.menulogo1{
+  height: 70px;
+  border-radius: 15px;
+  display: none;
+}
+
+/* Sección noticias */
+.noticias {
+  padding: 16px;
+}
+.hoy-clases h5
+{ margin: 8px 0 10px;
+  color:#0c6aa6;
+  font-weight:700;
+}
+.clase-lista{
+  display:grid;
+  gap:10px;
+}
+.clase-item {
+  background:#fff;
+  border-radius:10px;
+  padding:12px 14px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+.clase-materia {
+  font-weight:700;
+  color:#333;
+}
+.clase-prof, .clase-hora {
+  color:#555;
+  font-size:.95rem;
+}
+.muted { 
+  color:#6c757d;
+}
+.bad {
+  color:#d9534f;
+  font-weight:700;
+}
+
+
+/* Acciones en Noticias */
+.noticias-actions { margin: 8px 0 14px; }
+
+/* Calendario mensual */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+.cal-cell {
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 8px;
+  padding: 8px;
+  min-height: 110px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.cal-head {
+  font-weight: 700;
+  text-align: center;
+  background: #f3f6f9;
+  border: none;
+  min-height: auto;
+}
+.cal-date {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 6px;
+}
+.cal-class {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+  padding: 6px 8px;
+  border-left: 4px solid #0c6aa6;
+  background: #f7fbff;
+  border-radius: 6px;
+}
+.cal-empty { color: #adb5bd; }
+
+/* Grilla semanal */
+.cal-grilla .dia {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px dashed rgba(0,0,0,.1);
+  border-radius: 8px;
+  background: #fff;
+}
+.cal-grilla .dia-title {
+  font-weight: 700;
+  color: #0c6aa6;
+  margin-bottom: 6px;
+}
+.cal-grilla .clase {
+  padding: 6px 8px;
+  background: #f7fbff;
+  border-left: 4px solid #0c6aa6;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+/* Helpers */
+.d-none { display: none !important; }
+
+/* Botón flotante QR */
+.qr-fab{
+  --size: 78px;
+  --blue: #009ee3;
+  --ring: 8px;
+
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 35% 30%, #2ec4ff 0%, var(--blue) 70%);
+  color: #fff;
+  border: var(--ring) solid #fff;
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.28),
+    0 0 0 12px rgba(0,158,227,.18);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  will-change: transform;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.qr-fab:hover{
+  transform: translateX(-50%) scale(1.03);
+}
+.qr-fab:active{
+  transform: translateX(-50%) scale(1.07);
+}
+
+.qr-icon{
+  width: calc(var(--size) * .42);
+  height: calc(var(--size) * .42);
+  fill: currentColor;
+  display: block;
+}
+
+/* Regla duplicada en tu CSS: sigue aplicando (no cambia nada) */
+.qr-fab{
+  position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
+}
+
+/* Estados */
+.boton:hover {
+  background-color: #333;
+}
+
+/* Reglas genéricas que afectan a tu <input type="search"> y <button class="boton"> */
+input, button {
+  padding: 10px;
+  margin: 10px;
+  font-size: 16px;
+}
+
+/*//////////////////////////////////////// --- Bloque de RecuperarContraseña.html --- //////////////////////////////*/
+/* ====== Layout base (aislado con .Recup) ====== */
+.Recup {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #0f75bc 70%, #000);
+  color: #1a1a1a;
+}
+
+/* Header con imagen institucional */
+.Recup .header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
+  overflow: hidden;
+}
+.Recup .header img {
+  height: 550px;
+  margin-bottom: 130px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ====== Card principal ====== */
+.Recup .recup-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: -300px;
+}
+
+.Recup .recup-card {
+  display: flex;
+  width: 760px;
+  min-height: 420px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  z-index: 2;
+}
+
+/* ====== Panel izquierdo (informativo) ====== */
+.Recup .left-panel {
+  width: 42%;
+  padding: 2rem;
+  color: #fff;
+  background: linear-gradient(135deg, #0c8dc9 85%, transparent 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+.Recup .left-panel h2 {
+  font-size: 1.85rem;
+  margin: 0 0 0.75rem 0;
+}
+.Recup .left-panel p {
+  margin: 0 0 1rem 0;
+  line-height: 1.45;
+  color: #eef7fb;
+}
+.Recup .left-panel .bullet {
+  margin: 0.25rem 0 0;
+  padding-left: 1.2rem;
+  color: #e6f4f9;
+}
+.Recup .left-panel .bullet li {
+  margin: 0.25rem 0;
+}
+
+/* ====== Panel derecho (formulario) ====== */
+.Recup .right-panel {
+  width: 58%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.Recup .right-panel h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.35rem;
+  color: #333;
+}
+
+/* Form */
+.Recup .recup-form label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.Recup .recup-form input {
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  padding: 12px 14px;
+  margin-bottom: 0.75rem;
+  border: 1px solid #cfcfcf;
+  border-radius: 26px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.Recup .recup-form input:focus {
+  border-color: #0c8dc9;
+}
+
+.Recup .help {
+  display: block;
+  margin-top: -0.35rem;
+  margin-bottom: 0.8rem;
+  color: #6a6a6a;
+  font-size: 0.85rem;
+}
+
+/* Botón enviar */
+.Recup .send-btn {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 26px;
+  background: none;
+  border: 2px solid #0c8dc9;
+  color: #0c8dc9;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.Recup .send-btn:hover {
+  background: #0c8dc9;
+  color: #fff;
+}
+
+/* Mensajes de estado */
+.Recup .status {
+  min-height: 20px;              /* reservá espacio para el mensaje */
+  margin: 12px 0 0;
+  font-size: 0.95rem;
+  color: #2c3e50;
+}
+
+/* Links inferiores */
+.Recup .links {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}
+.Recup .back-link {
+  color: #0c8dc9;
+  text-decoration: none;
+  font-weight: 600;
+}
+.Recup .back-link:hover {
+  text-decoration: underline;
+}
+
+/* Utilidades para recuperación (evitan inline style bloqueado por CSP) */
+.ml--10 { margin-left: -10px; }
+.mr-0   { margin-right: 0; }
+
+
+/*//////////////////////////////////////// --- CSS PARA QRGenerado.html --- //////////////////////////////*/
+
+/* ajustecitos mínimos para el QR */
+    .qr-wrapper {
+      display: grid;
+      place-items: center;
+      padding: 32px 16px 56px;
+    }
+    .qr-card {
+      width: min(520px, 92vw);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+      padding: 24px 22px;
+      text-align: center;
+    }
+    .qr-card h1 {
+      font-size: 1.4rem;
+      margin: 0 0 6px 0;
+      color: #0c6aa6;
+      font-weight: 700;
+    }
+    .qr-card .sub {
+      color: #555;
+      margin-bottom: 12px;
+      font-size: .95rem;
+    }
+    #qrcode {
+      width: 240px;
+      height: 240px;
+      margin: 10px auto 8px;
+    }
+    .meta {
+      font-size: .9rem;
+      color: #444;
+    }
+    .muted {
+      color: #6c757d;
+      font-size: .85rem;
+      margin-top: 6px;
+    }
+    .actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-outline {
+      border: 2px solid #0c8dc9;
+      color: #0c8dc9;
+      background: none;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-outline:hover {
+      background: #0c8dc9;
+      color: #fff;
+    }
+
+/*//////////////////////////////////////// --- CSS PARA validar.html --- //////////////////////////////*/
+
+.val-wrapper{
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+}
+.val-card{
+  width: min(560px, 92vw);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  padding: 24px 22px;
+  text-align: left; /* mejor lectura en lista */
+}
+.val-title{
+  font-size: 1.4rem;
+  margin: 0 0 6px;
+  color: #0c6aa6;
+  font-weight: 700;
+  text-align: center;
+}
+.val-sub{
+  color: #555;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.ok{
+  color: #0ea15b;
+  font-weight: 700;
+}
+.bad{
+  color: #d9534f;
+  font-weight: 700;
+}
+.meta{
+  margin-top: 8px;
+  color: #333;
+}
+.meta div{
+  margin: 4px 0; /* separa cada fila de info */
+}
+.muted{
+  color: #6c757d;
+  font-size: .9rem;
+  margin-top: 6px;
+}
+
+/* header con botón volver */
+.topbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btn-outline{
+  color: black;
+  border: 2px solid #0c8dc9;
+  background: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 15px;
+}
+.btn-outline:hover{
+  background: #0c8dc9;
+  color: #fff;
+}
+
+/*////////////////////////////////////////// --- CSS PARA ADMIN.HTML --- //////////////////////////////*/
+
+/* =======================================================
+   ADMIN (solo esta página)
+   - Mantiene el look & feel de inicio.html
+   - Cambia acentos a morado claro
+   - Mejora la grilla (filtros + tabla + paginación)
+   - Alcance: solo dentro de <main data-need-role="admin">
+   ======================================================= */
+
+main[data-need-role="admin"] {
+  --brand: #7b61ff;           /* morado principal */
+  --brand-soft: #f4f1ff;      /* fondo suave */
+  --border: rgba(0,0,0,.08);  /* bordes sutiles */
+  --muted: #6c757d;
+  --ok-bg: #e8f7ef;
+  --ok-fg: #0f7a48;
+  --bad-bg: #fdeaea;
+  --bad-fg: #b3261e;
+}
+
+/* Título / pequeños acentos */
+main[data-need-role="admin"] h3 {
+  color: var(--brand);
+  font-weight: 700;
+  margin-left: 420px;
+}
+
+/* ===== Panel de filtros ===== */
+main[data-need-role="admin"] #filtros {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 12px 4px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.05);
+}
+main[data-need-role="admin"] #filtros .form-label {
+  font-weight: 600;
+  color: #2b2f33;
+  margin-bottom: 6px;
+}
+main[data-need-role="admin"] #filtros .form-control,
+main[data-need-role="admin"] #filtros .form-select {
+  border-radius: 10px;
+  border-color: var(--border);
+}
+main[data-need-role="admin"] #filtros .btn.btn-primary {
+  border-radius: 10px;
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+/* ===== Acciones ===== */
+main[data-need-role="admin"] .btn.btn-outline-secondary.btn-sm {
+  border-radius: 10px;
+}
+
+/* ===== Contenedor de tabla ===== */
+main[data-need-role="admin"] .table-responsive {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.05);
+  background: #fff;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* ===== Tabla ===== */
+main[data-need-role="admin"] #tblLogs {
+  font-size: .92rem;
+}
+
+main[data-need-role="admin"] #tblLogs thead th {
+  background: var(--brand-soft);
+  color: #2b2f33;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border) !important;
+  white-space: nowrap;
+  letter-spacing: .2px;
+  padding: .65rem .7rem !important;
+  cursor: pointer;           /* indica que se puede ordenar */
+  user-select: none;
+}
+main[data-need-role="admin"] #tblLogs thead th:hover {
+  background: #ebe4ff;       /* hover morado suave */
+}
+
+main[data-need-role="admin"] #tblLogs tbody td {
+  padding: .55rem .7rem !important;
+  vertical-align: middle;
+  border-color: var(--border) !important;
+}
+main[data-need-role="admin"] #tblLogs tbody tr:hover {
+  background: #faf7ff;       /* hover fila muy sutil */
+}
+
+/* Números bien alineados para Fecha/Hora */
+main[data-need-role="admin"] #tblLogs td:first-child,
+main[data-need-role="admin"] #tblLogs th:first-child {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Chips de condición */
+main[data-need-role="admin"] #tblLogs td.text-success {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--ok-fg) !important;
+  background: var(--ok-bg);
+  border: 1px solid rgba(15,122,72,.15);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+main[data-need-role="admin"] #tblLogs td.text-danger {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--bad-fg) !important;
+  background: var(--bad-bg);
+  border: 1px solid rgba(179,38,30,.15);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+/* Indicadores de orden (si tu JS setea data-sort="asc|desc" en el <th>) */
+main[data-need-role="admin"] #tblLogs thead th[data-sort="asc"]::after,
+main[data-need-role="admin"] #tblLogs thead th[data-sort="desc"]::after {
+  content: '';
+  display: inline-block;
+  margin-left: 6px;
+  border: 5px solid transparent;
+}
+main[data-need-role="admin"] #tblLogs thead th[data-sort="asc"]::after  { border-bottom-color: #2b2f33; transform: translateY(-2px); }
+main[data-need-role="admin"] #tblLogs thead th[data-sort="desc"]::after { border-top-color: #2b2f33;    transform: translateY(2px);  }
+
+/* ===== Paginación ===== */
+main[data-need-role="admin"] #pager .page-item .page-link {
+  border-radius: 8px;
+  border-color: var(--border);
+  color: #2b2f33;
+}
+main[data-need-role="admin"] #pager .page-item.active .page-link {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+main[data-need-role="admin"] #pager .page-item.disabled .page-link {
+  color: var(--muted);
+}
+
+
+/*//////////////////////////////////////// --- Media queries que sí tocan clases usadas en este HTML --- //////////////////////////////*/
+@media (max-width: 992px){
+  .menulogo{ display: none; }
+  .menulogo1{ display: inline-block; }
+}
+
+@media (max-width: 650px){
+  .menulogo1{ height: 60px; }
+}
+
+@media (max-width: 394px){
+  .menulogo1{ height: 50px; }
+}
+
+@media (max-width: 375px){
+  .menulogo1{ height: 55px; }
+}
+
+@media (max-width: 360px){
+  .menulogo1{ height: 50px; }
+}
+
+@media (max-width: 345px){
+  .menulogo1{ height: 45px; }
+}
+
+@media (max-width: 321px){
+  .menulogo1{ height: 40px; }
+}
+
+@media (max-width: 296px){
+  .menulogo1{ height: 35px; }
+}
+
+
+/*///////////////////media queries para recuperar contraseña/////////////////////*/
+
+@media (max-width: 860px) {
+  .Recup .recup-card {
+    flex-direction: column;
+    width: 100%;
+    max-width: 640px;
+  }
+  .Recup .left-panel, 
+  .Recup .right-panel {
+    width: 100%;
+  }
+  .Recup .left-panel {
+    padding: 1.6rem 1.4rem;
+  }
+  .Recup .right-panel {
+    padding: 1.6rem 1.4rem 1.8rem;
+  }
+  .Recup .recup-wrapper {
+    margin-top: -160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Recup .left-panel h2 {
+    font-size: 1.45rem;
+  }
+  .Recup .right-panel h3 {
+    font-size: 1.2rem;
+  }
+  .Recup .send-btn {
+    padding: 10px 12px;
+  }
+}
+
+/* * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: url('/imagenes/IBeltran.webp') no-repeat center center fixed;
+  background-size: cover;
+  flex-direction: column;
+  padding-bottom: 90px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 5;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.header {
+  background-color: #007BFF;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0 20px;
+  z-index: 1000;
+}
+
+.header img {
+  height: 45px;
+} */
+
+/* .hamburger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  margin: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  height: 100%;
+  width: 250px;
+  background-color: #fff;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1001;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.side-menu ul li {
+  margin-bottom: 20px;
+}
+
+.side-menu ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 2px solid #a259ff;
+  z-index: 999;
+}
+
+.bottom-nav a {
+  color: black;
+  font-size: 1.8rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-nav a:hover {
+  color: #a259ff;
+} */
+
+/* .bottom-nav .qr-button {
+  position: relative;
+  top: -20px; 
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(162, 89, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: url('/imagenes/QRProyecto.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+/* ======================== Estilos de Configuracion.html ======================== */
+/* .Configuracion a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.Configuracion a:hover {
+  text-decoration: underline;
+}
+
+.Configuracion .container {
+  display: flex;
+  height: 100vh;
+  background: #fff;
+  padding-top: 30px;
+}
+
+.Configuracion .sidebar {
+  width: 220px;
+  background: #ededf7;
+  padding: 20px;
+  color: #6f6f6f;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.Configuracion .sidebar .section-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 10px;
+}
+
+.Configuracion .sidebar nav a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 24px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #3a3a3a;
+}
+
+.Configuracion .sidebar nav a.active,
+.Configuracion .sidebar nav a:hover {
+  background: #e5e5ff;
+  color: #2c2cff;
+}
+
+.Configuracion .sidebar nav a .icon {
+  margin-right: 8px;
+}
+
+.Configuracion .sidebar hr {
+  border: none;
+  border-top: 1px solid #d1d1d1;
+  margin: 20px 0;
+}
+
+.Configuracion .content {
+  flex-grow: 1;
+  padding: 40px 50px;
+  overflow-y: auto;
+}
+
+.Configuracion .content header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.Configuracion .content header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.Configuracion .content header .user-info {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.Configuracion .content h1 {
+  margin-top: 0;
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  font-weight: 900;
+} */
+
+/* ==================== GenerarInforme.html ====================*/ 
+/* .GenerarInforme .container {
+    margin: auto;
+    margin-top: 100px;
+    width: 90%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    border: 2px solid #a259ff;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 6;
+    padding: 30px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.GenerarInforme .container_header {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 10px 20px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #a259ff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.GenerarInforme .wrapper {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.GenerarInforme .form-group {
+    width: 100%;
+}
+
+.GenerarInforme input,
+.GenerarInforme select {
+    width: 100%;
+    padding: 12px;
+    background: #000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.GenerarInforme .btn {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to right, #9204FF, #000000);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.GenerarInforme .btn:hover {
+    opacity: 0.9;
+} */
+
+/* ==================== Home.html ==================== */ 
+
+/* .news-card {
+  margin: 80px auto auto auto;
+  padding: 25px 20px;
+  max-width: 450px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: justify;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  margin-bottom: 200px;
+  position: relative;
+  z-index: 9;
+}
+
+.news-header {
+  font-weight: bold;
+  color: #ff4242;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 5px;
+}
+
+.news-content p {
+  margin-bottom: 10px;
+  line-height: 1.4;
+  font-size: 0.95rem;
+}
+
+.news-content a {
+  color: #50aaff;
+  word-break: break-all;
+  font-size: 0.9rem;
+}
+
+.news-content .btn {
+  margin-top: 15px;
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #9204FF, #000000);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.news-content .btn:hover {
+  background: linear-gradient(to right, #6e00cc, #000000);
+} */
+
+/* ======================== Estilos de Login.html ========================*/
+
+/* ======================== Estilos de Login.html ======================== */
+/* .Login .login-form input,
+.Login .login-form select {
+    width: 100%;
+    padding: 12px;
+    background: #ffffff;  
+    color: #000000;        
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: left; 
+}
+
+.Login .login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: -300px;
+}
+
+.Login .login-card {
+    display: flex;
+    width: 700px;
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    z-index: 99999;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: -100px;
+}
+
+.Login .left-panel {
+    background: linear-gradient(135deg, #0c8dc9 85%, transparent 60%);
+    color: white;
+    padding: 2rem;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.Login .left-panel h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.Login .signup-btn {
+    background: white;
+    color: #0c8dc9;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.Login .signup-btn:hover {
+    background: #f0f0f0;
+}
+
+.Login .right-panel {
+    padding: 2rem;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 60px;
+}
+
+.Login .right-panel h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.Login form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.Login .required {
+    color: red;
+    margin-left: 3px;
+}
+
+.Login form input {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    color: #000;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.Login form input:focus {
+    border-color: #0c8dc9;
+}
+
+.Login .signin-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 25px;
+    background: none;
+    border: 2px solid #0c8dc9;
+    color: #0c8dc9;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 0.5rem;
+}
+
+.Login .signin-btn:hover {
+    background: #0c8dc9;
+    color: white;
+}
+
+.Login .forgot-link {
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+    color: #0c8dc9;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.Login .forgot-link:hover {
+    text-decoration: underline;
+} */
+/* ==================== PaginaenMantenimiento.html ==================== */
+/* .PaginaenMantenimiento * {
+  z-index: 6;
+}
+
+.PaginaenMantenimiento .maintenance-box-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.PaginaenMantenimiento .maintenance-box {
+  max-width: 500px;
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.PaginaenMantenimiento .maintenance-box h1 {
+  font-size: 26px;
+  color: #111;
+  margin-bottom: 15px;
+}
+
+.PaginaenMantenimiento .maintenance-box p {
+  color: #777;
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.PaginaenMantenimiento .maintenance-box a {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #3e94f7;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+
+}
+
+.PaginaenMantenimiento .maintenance-box a:hover {
+  background-color: #3283c5;
+} */
+
+/* ======================== Estilos de PaneldeAdministrador.html ======================== */
+
+/* ======================== Estilos de QRGenerado.html ======================== */
+/* .menulogo{
+  height: 70px;
+  border-radius: 15px;
+}
+.boton{
+  margin-right: 20px;
+}
+.menulogo1{
+  height: 70px;
+  border-radius: 15px;
+  display: none;
+}
+
+.QR #qrcode {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    display: none; 
+}
+
+.QR #qrcode canvas {
+    width: 200px !important;
+    height: 200px !important;
+}
+
+.QR #logo-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;      
+    height: 80px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.QR #logo-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.QR .btn-generar {
+    margin-top: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(0, 17, 255);
+    width: 150px;
+    height: 50px;
+}
+
+.QR .btn-generar:hover {
+    background-color: #6e00cc;
+}
+
+.QR .QR-text {
+    text-align: center;
+    font-family: monospace;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.QR .QR-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: 50px;
+    align-content: center;
+}
+
+.QR .QR-box {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    height: 450px;
+    width: 400px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.QR .qr {
+    display: none;
+    width: 250px;
+    height: 250px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 30px auto;
+    align-items: center;
+    justify-content: center;
+} */
+
+/* ======================== Estilos de RecuperarContraseña.html ======================== */
+/* .steps {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 80px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  z-index: 10; 
+}
+
+.steps > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #666666;
+  z-index: 10; 
+}
+
+.steps > div::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 40px;
+  height: 2px;
+  background: #ccc;
+  transform: translateY(-50%);
+}
+
+.steps > div:last-child::after {
+  display: none;
+}
+
+.steps .circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #ccc;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  font-size: 14px;
+  z-index: 10; 
+}
+
+.steps > div.active {
+  color: #1465a8;
+  font-weight: bold;
+}
+
+.steps > div.active .circle {
+  background: #1465a8;
+}
+
+.steps > div.active::after {
+  background: #1465a8;
+}
+
+.steps > div.completed {
+  color: #2d8659;
+  font-weight: bold;
+}
+
+.steps > div.completed .circle {
+  background: #2d8659;
+  content: "✔";
+  font-size: 14px;
+}
+
+.steps > div.completed::after {
+  background: #2d8659;
+}
+
+.recovery-password-container {
+  position: relative; 
+  background-color: #e2dcdc;
+  padding: 30px;
+  border-radius: 15px;
+  width: 500px;
+  max-width: 90%;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10; 
+}
+
+.recovery-password-info-box {
+  background-color: #2290bb;
+  padding: 20px;
+  border-radius: 15px;
+  color: #fff;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.btn {
+  background: #0d73c7;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn:hover {
+  background: #043863;
+} */
+
+/* ======================== Estilos de Tabla.html ======================== */
+
+/* .Tabla table,
+.Tabla .pagination-controls,
+.Tabla .search-and-button-container {
+    position: relative;
+    z-index: 9;
+}
+
+.Tabla .table-container {
+    margin: 30px;
+}
+
+.Tabla .table-title {
+    text-align: center;
+    margin-top: 70px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 20px;
+}
+
+.Tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.Tabla thead {
+    background-color: #1976d2;
+    color: white;
+}
+
+.Tabla th,
+.Tabla td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.Tabla tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.Tabla .dni {
+    font-size: 0.9em;
+    color: gray;
+    display: block;
+    margin-top: 4px;
+}
+
+.Tabla .pagination {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 80px;
+}
+
+.Tabla .pagination-info {
+    color: #ffffff;
+}
+
+.Tabla .pagination-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.Tabla .pagination-controls button {
+    padding: 6px 12px;
+    margin: 0 5px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Tabla .pagination-controls button.active {
+    background-color: #0077ff;
+    font-weight: bold;
+}
+
+.Tabla .pagination-controls button:disabled {
+    background-color: #ccc;
+    cursor: default;
+}
+
+.Tabla .search-and-button-container {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.Tabla .search-container input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: left;
+    background-color: #fff;
+    color: #000;
+}
+
+.Tabla .buttons {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.Tabla button {
+    padding: 8px 16px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Tabla button:hover {
+    background-color: #1565c0;
+} */
+
+/* ======================== Versión móvil ======================== */
+/* @media (max-width: 2050px){
+  .Login .login-card{
+    margin-bottom: -195px;
+  }
+}
+
+@media (max-width: 790px){
+  .Login .login-card{
+    margin-bottom: -50px;
+  }
+} */
+
+/*//////////////////////////asdsadadadsadsa////////////////////////////*/
+
+/* @media (max-width: 1093px){
+  .qr h1{
+    text-align: center;
+  }
+} */
+
+/* @media (max-width: 992px){
+  .menulogo{
+    display: none;
+  }
+  .menulogo1{display: inline-block;} */
+
+  /* .qr h1{
+    text-align: center;
+  } */
+/* } */
+
+/*///////////////////////////////*/
+/* @media (max-width: 650px){ */
+  /* .header{
+    margin-bottom: -70px;
+  }
+  .contenedor{
+    margin-left: 10%;
+    margin-right: 10%;
+  } */
+  /* .menulogo{
+    display: none;
+  }
+  
+  .menulogo1{
+    height: 60px;
+  } */
+
+  /* .container{
+    margin-left: 10%;
+    margin-right: 10%;
+  } */
+/* } */
+
+
+/*////////////////////////////////*/
+/* @media (max-width: 430px){
+  .header{
+    margin-bottom: -110px;
+  }
+
+  .contenedor{
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+} */
+
+
+/*////////////////////////////////*/
+/* @media (max-width: 375px){ */
+  /* .header{
+    margin-bottom: -110px;
+  }
+
+  .contenedor{
+    margin-left: 10%;
+    margin-right: 10%;
+  } */
+
+  /* .menulogo1{
+    height: 55px;
+  }
+} */
+
+/*////////////////////////////////*/
+/* @media (max-width: 394px){ */
+  /* .container{
+    margin-left: 10%;
+    margin-right: 10%;
+  } */
+
+  /* .menulogo1{
+    height: 50px;
+  }
+} */
+
+/*////////////////////////////////*/
+/* @media (max-width: 360px){ */
+  /* .contenedor{
+    margin-left: 10%;
+    margin-right: 10%;
+  } */
+
+  /* .menulogo1{
+    height: 50px;
+  }
+} */
+
+/*////////////////////////////////*/
+/* @media (max-width: 345px){ */
+  /* .container{
+    margin-left: 10%;
+    margin-right: 10%;
+  } */
+
+  /* .menulogo1{
+    height: 45px;
+  }
+} */
+
+/*////////////////////////////////*/
+/* @media (max-width: 321px){
+  .menulogo1{
+    height: 40px;
+  }
+}
+
+@media (max-width: 296px){
+  .menulogo1{
+    height: 35px;
+  }
+} */
+
+/*///////////////////////////////asdsadsadsadsadsadasd///////////////////////*/
+
+
+/* @media (min-width: 768px) {
+    .bottom-nav {
+    display: none;
+    }
+}
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        background-color: #007BFF;
+        position: fixed;      
+        top: 0;              
+        right: 0;            
+        width: 200px;
+        height: 100vh;      
+        transform: translateX(100%); 
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
+        margin-top: 60px;
+    }
+
+    .nav-links.open {
+        transform: translateX(0);  
+    }
+
+    .nav-links a {
+        padding: 15px;
+        color: white;
+        text-decoration: none;
+        border-top: 1px solid #005ecb;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .mobile-menu-button {
+        display: block;
+    } */
+
+    
+    /* Tablas */
+    /* .search-and-button-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .buttons {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .buttons button {
+      width: 100%;
+    }
+}
+
+ @media (max-height: 500px) {
+    .container {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        max-height: unset;
+        overflow-y: auto;
+    }
+} */
+
+
+
+
+
+
+
