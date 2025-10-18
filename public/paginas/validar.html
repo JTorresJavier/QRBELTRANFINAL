@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Validación de acceso · Instituto</title>
+
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="/styles/style.css" />
+  <script src="/javaScript/validar.js" defer></script>
+</head>
+<body>
+  <header class="fondo1">
+    <nav class="navbar navbar-expand-lg navbar-dark propio">
+      <div class="container-fluid">
+        <span class="navbar-brand ms-2">Instituto · Validación</span>
+        
+      </div>
+    </nav>
+  </header>
+
+  <main class="val-wrapper">
+    <section class="val-card">
+      <div class="val-title">Control de Acceso</div>
+      <div class="val-sub">Validación de pase QR</div>
+      <div id="status" class="muted">Validando…</div>
+      <div id="meta" class="meta"></div>
+      <div id="turnoState"></div> <!-- ← NUEVO: acá mostramos dentro/fuera de turno -->
+      <div id="hint" class="muted"></div>
+    </section>
+    <a class="btn-outline" href="/paginas/inicio.html">Volver a Inicio</a> <!-- ← NUEVO -->
+  </main>
+</body>
+</html>
