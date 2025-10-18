@@ -808,6 +808,7 @@ main[data-need-role="admin"] #pager .page-item.disabled .page-link {
 }
 
 
+<<<<<<< HEAD
 /* ==================== PERFIL DE USUARIO ==================== */
 .Perfil {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -936,6 +937,8 @@ main[data-need-role="admin"] #pager .page-item.disabled .page-link {
 
 
 
+=======
+>>>>>>> 83b2b4ad936fed34256f9bcd0a6df41b0eb1f7a8
 /*//////////////////////////////////////// --- Media queries que sí tocan clases usadas en este HTML --- //////////////////////////////*/
 @media (max-width: 992px){
   .menulogo{ display: none; }
