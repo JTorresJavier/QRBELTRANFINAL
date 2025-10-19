@@ -24,23 +24,4 @@ router.get('/', authorize(), async (req, res) => {
   }
 });
 
-router.put('/', authorize(), async (req, res) => {
-  try {
-    const userId = req.user.id;
-    const { nombre, apellido, email, dni, turno, anio } = req.body;
-
-    await pool.query(
-      `UPDATE users
-       SET nombre=?, apellido=?, email=?, dni=?, turno=?, anio=?
-       WHERE id=?`,
-      [nombre, apellido, email, dni, turno, anio, userId]
-    );
-
-    res.json({ message: 'Perfil actualizado correctamente' });
-  } catch (error) {
-    console.error('Error al actualizar perfil:', error);
-    res.status(500).json({ message: 'Error al actualizar el perfil' });
-  }
-});
-
 module.exports = router;

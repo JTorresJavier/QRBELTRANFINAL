@@ -12,19 +12,17 @@
   <header class="fondo1">
     <nav class="navbar navbar-expand-lg navbar-dark propio">
       <div class="container-fluid">
-        <!-- ✅ ahora apunta a /paginas/admin.html -->
         <a class="navbar-brand" href="/paginas/admin.html">Admin</a>
-
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navAdmin">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div id="navAdmin" class="collapse navbar-collapse">
           <ul class="navbar-nav me-auto">
-            <!-- ✅ link actualizado -->
             <li class="nav-item"><a class="nav-link active" href="/paginas/admin.html">Generar informe</a></li>
-            <!-- ✅ ABM en su propia página -->
             <li class="nav-item"><a class="nav-link" href="/paginas/abm-alumnos.html">ABM Alumnos</a></li>
+                   <li class="nav-item">
+          <a class="nav-link menu-prop" href="/paginas/perfil.html" aria-disabled="true">Perfil</a>
+        </li>
           </ul>
           <a href="#" id="logoutBtn" class="nav-link menu-prop">Cerrar sesión</a>
         </div>
@@ -33,51 +31,44 @@
   </header>
 
   <main class="container py-3" data-need-auth="1" data-need-role="admin">
-  
-  <section>
-    <h3 class="mb-3">Generar informe</h3>
-    <!-- Filtros + Acciones (todo en una sola barra) -->
-    <form id="filtros" class="row g-2 align-items-end">
-      <div class="col-sm-3">
-        <label class="form-label">Buscar (nombre, DNI, usuario)</label>
-        <input type="text" id="q" class="form-control" placeholder="Ej: Pérez o 40123456">
-      </div>
-
-      <div class="col-sm-2">
-        <label class="form-label">Turno</label>
-        <select id="turno" class="form-select">
-          <option value="">Todos</option>
-          <option>mañana</option>
-          <option>tarde</option>
-          <option>noche</option>
-        </select>
-      </div>
-<<<<<<< HEAD
-      
-=======
->>>>>>> 83b2b4ad936fed34256f9bcd0a6df41b0eb1f7a8
-
-      <div class="col-sm-2">
-        <label class="form-label">Año</label>
-        <select id="anio" class="form-select">
-          <option value="">Todos</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
-      </div>
-
-        <div class="col-sm-2">
-            <label class="form-label">Desde</label>
-            <input type="date" id="fromDate" class="form-control" placeholder="aaaa-mm-dd">
-        </div>
-        <div class="col-sm-2">
-            <label class="form-label">Hasta</label>
-            <input type="date" id="toDate" class="form-control" placeholder="aaaa-mm-dd">
+    <section>
+      <h3 class="mb-3">Generar informe</h3>
+      <form id="filtros" class="row g-2 align-items-end">
+        <div class="col-sm-3">
+          <label class="form-label">Buscar (nombre, DNI, usuario)</label>
+          <input type="text" id="q" class="form-control" placeholder="Ej: Pérez o 40123456">
         </div>
 
-<<<<<<< HEAD
-        <!-- Filtro por Rol agregado, borrar esto después -->
+        <div class="col-sm-2">
+          <label class="form-label">Turno</label>
+          <select id="turno" class="form-select">
+            <option value="">Todos</option>
+            <option>mañana</option>
+            <option>tarde</option>
+            <option>noche</option>
+          </select>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Año</label>
+          <select id="anio" class="form-select">
+            <option value="">Todos</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Desde</label>
+          <input type="date" id="fromDate" class="form-control" placeholder="aaaa-mm-dd">
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Hasta</label>
+          <input type="date" id="toDate" class="form-control" placeholder="aaaa-mm-dd">
+        </div>
+
         <div class="col-sm-2">
           <label class="form-label">Rol</label>
           <select id="rol" class="form-select">
@@ -87,55 +78,36 @@
           </select>
         </div>
 
-=======
->>>>>>> 83b2b4ad936fed34256f9bcd0a6df41b0eb1f7a8
-      <!-- Acciones a la derecha, en la misma fila -->
-      <div class="col-sm-1 d-flex justify-content-end gap-2">
-        <button class="btn btn-primary" type="submit" title="Aplicar filtros">Filtrar</button>
+        <div class="col-sm-1 d-flex justify-content-end gap-2">
+          <button class="btn btn-primary" type="submit" title="Aplicar filtros">Filtrar</button>
+        </div>
+      </form>
+
+      <div class="table-responsive mt-3">
+        <table class="table table-sm table-striped align-middle" id="tblLogs">
+          <thead>
+            <tr>
+              <th data-k="l.scanned_at">Fecha/Hora</th>
+              <th data-k="u.apellido">Apellido</th>
+              <th data-k="u.nombre">Nombre</th>
+              <th data-k="u.username">Usuario</th>
+              <th data-k="u.dni">DNI</th>
+              <th data-k="u.anio">Año</th>
+              <th data-k="u.turno">Turno</th>
+              <th data-k="l.within_shift">Condición</th>
+              <th>Selector</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
-    </form>
 
-    <!-- Tabla -->
-    <div class="table-responsive mt-3">
-      <table class="table table-sm table-striped align-middle" id="tblLogs">
-        <thead>
-          <tr>
-            <th data-k="l.scanned_at">Fecha/Hora</th>
-            <th data-k="u.apellido">Apellido</th>
-            <th data-k="u.nombre">Nombre</th>
-            <th data-k="u.username">Usuario</th>
-            <th data-k="u.dni">DNI</th>
-            <th data-k="u.anio">Año</th>
-            <th data-k="u.turno">Turno</th>
-            <th data-k="l.within_shift">Condición</th>
-<<<<<<< HEAD
-            <th>Selector</th>
-=======
->>>>>>> 83b2b4ad936fed34256f9bcd0a6df41b0eb1f7a8
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-
-    <!-- Paginación a la derecha -->
-    <nav class="mt-2 d-flex justify-content-end">
-      <ul class="pagination pagination-sm mb-0" id="pager"></ul>
-      <button id="btnExportCsv" class="btn btn-outline-secondary btn-sm" type="button" title="Exportar CSV">CSV</button>
-    </nav>
-<<<<<<< HEAD
-        <nav class="mt-2 d-flex justify-content-end">
-      <ul class="pagination pagination-sm mb-0" id="pager"></ul>
-      <button id="btnExportCsv" class="btn btn-outline-secondary btn-sm" type="button" title="Exportar CSV">Excel</button>
-    </nav>
-        <nav class="mt-2 d-flex justify-content-end">
-      <ul class="pagination pagination-sm mb-0" id="pager"></ul>
-      <button id="btnExportCsv" class="btn btn-outline-secondary btn-sm" type="button" title="Exportar CSV">PDF</button>
-    </nav>
-=======
->>>>>>> 83b2b4ad936fed34256f9bcd0a6df41b0eb1f7a8
-  </section>
-</main>
+      <nav class="mt-2 d-flex justify-content-end">
+        <ul class="pagination pagination-sm mb-0" id="pager"></ul>
+        <button id="btnExportCsv" class="btn btn-outline-secondary btn-sm" type="button" title="Exportar CSV">CSV</button>
+      </nav>
+    </section>
+  </main>
 
   <script src="/JavaScript/common.js" defer></script>
   <script src="/JavaScript/admin-informe.js" defer></script>
