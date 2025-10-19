@@ -10,6 +10,7 @@ const recoveryRoutes = require('./server/recovery.routes');
 const qrRoutes = require('./server/qr.routes');
 const studentRoutes = require('./server/student.routes');
 const adminRoutes = require('./server/admin.routes');
+const perfilRoutes = require('./server/perfil.routes');
 
 const app = express();
 
@@ -52,6 +53,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Rutas de admin (al final, para que no pisen /public)
 app.use('/api/admin', adminRoutes);
+
+// Ruta de perfil
+app.use('/api/perfil', perfilRoutes);
 
 // fallback opcional: servir index si piden rutas sin extensión
 // app.get(/^\/(?!api\/).*(?!\.[a-zA-Z0-9]+)$/, (req, res) => {
