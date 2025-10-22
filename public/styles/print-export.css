@@ -1,0 +1,6 @@
+/* Estilos para exportación/impresión (PDF) */
+body { font-family: Arial, sans-serif; margin: 16px; }
+h3.title { margin: 0 0 12px; }
+table.export { border-collapse: collapse; width: 100%; font-size: 12px; }
+table.export thead th { text-align: left; padding: 6px; border-bottom: 1px solid #ccc; }
+table.export tbody td { padding: 6px; border-bottom: 1px solid #eee; }

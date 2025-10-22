@@ -46,10 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       localStorage.setItem('token', data.token);
-      // 👉 redirigir según rol
-      const role = (data.user?.role || '').toLowerCase();
-      const dest = role === 'admin' ? '/paginas/admin.html' : '/paginas/inicio.html';
-      window.location.href = dest;
+
+      // ✅ REDIRECCIÓN SEGÚN ROL
+      const role = (data.user?.role || '').toUpperCase();
+
+        if (role === 'SEGURIDAD') {
+          window.location.href = '/paginas/seguridad.html';
+        } else if (role === 'ADMIN') {
+            window.location.href = '/paginas/admin.html';
+        } else {
+          window.location.href = '/paginas/inicio.html';
+        }
     } catch {
       showError('No se pudo conectar con el servidor.');
     } finally {

@@ -1,5 +1,8 @@
 // server.js
 require('dotenv').config();
+const visitasRoutes = require('./server/visitas.routes'); // ruta al archivo nuevo
+const ingresosRoutes = require('./server/ingresos.routes');
+
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
@@ -56,6 +59,13 @@ app.use('/api/admin', adminRoutes);
 
 // Ruta de perfil
 app.use('/api/perfil', perfilRoutes);
+
+// Rutas de visitas
+app.use('/api/visitas', visitasRoutes);
+
+// Rutas de ingresos
+app.use('/api/ingresos', ingresosRoutes);
+
 
 // fallback opcional: servir index si piden rutas sin extensión
 // app.get(/^\/(?!api\/).*(?!\.[a-zA-Z0-9]+)$/, (req, res) => {

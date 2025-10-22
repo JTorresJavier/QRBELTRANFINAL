@@ -807,8 +807,30 @@ main[data-need-role="admin"] #pager .page-item.disabled .page-link {
   color: var(--muted);
 }
 
+/* Toolbar de exportación (Admin) */
+#admin-page .toolbar{
+  display:flex;
+  gap:.5rem;
+  margin:.25rem 0 .75rem;
+  flex-wrap:wrap;
+}
+#admin-page .toolbar button{
+  background:#0e6b2f;
+  color:#fff;
+  border:0;
+  padding:.5rem .75rem;
+  border-radius:.5rem;
+  font-weight:600;
+  cursor:pointer;
+}
+#admin-page .toolbar button:hover{ filter:brightness(1.06); }
+#admin-page .toolbar #btn-admin-export-pdf{ background:#1a62d6; }
 
-<<<<<<< HEAD
+/* Cursor en cabeceras ordenables, sin inline styles */
+#admin-page #tblLogs thead th[data-k] { cursor: pointer; }
+
+
+
 /* ==================== PERFIL DE USUARIO ==================== */
 .Perfil {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -915,6 +937,216 @@ main[data-need-role="admin"] #pager .page-item.disabled .page-link {
   color: #fff;
 }
 
+
+/* =========================
+   Página de Seguridad (QR Visitas)
+   ========================= */
+#seguridad-page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #0a0f1a;            /* mismo mood oscuro del proyecto */
+  color: #e6eef7;
+}
+
+/* Header */
+#seguridad-page header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #0b1b2a;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+#seguridad-page header h1 {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  font-size: clamp(1.1rem, 1.2rem + .4vw, 1.6rem);
+  letter-spacing: .5px;
+  font-weight: 700;
+  color: #fff;
+}
+#seguridad-page header nav {
+  display: flex;
+  gap: .5rem;
+  padding: .5rem 1.25rem 1rem;
+  flex-wrap: wrap;
+}
+#seguridad-page header nav a {
+  text-decoration: none;
+  padding: .45rem .75rem;
+  border-radius: .5rem;
+  border: 1px solid rgba(255,255,255,.15);
+  color: #fff;
+  transition: transform .08s ease, background .2s ease, border-color .2s ease;
+}
+#seguridad-page header nav a:hover {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.3);
+  transform: translateY(-1px);
+}
+
+/* Main + cards */
+#seguridad-page main {
+  width: min(1100px, 96%);
+  margin: 1rem auto 2rem;
+  display: grid;
+  gap: 1rem;
+}
+#seguridad-page .card {
+  width: 80%;
+  margin-left: 60px;
+  background: rgba(18, 27, 46, .9);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  backdrop-filter: blur(2px);
+}
+#seguridad-page .card h2 {
+  margin: 0 0 .75rem 0;
+  font-size: 1.1rem;
+  color: #d9e8ff;
+}
+
+/* Formulario nueva visita */
+#seguridad-page #form-visita .grid {
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+}
+#seguridad-page label {
+  display: grid;
+  gap: .35rem;
+  font-size: .9rem;
+  color: #c9d7ef;
+}
+#seguridad-page input[type="text"],
+#seguridad-page input[type="datetime-local"] {
+  width: 80%;
+  background: #0e1627;
+  color: #e6eef7;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  padding: .6rem .7rem;
+  outline: none;
+}
+#seguridad-page input:focus {
+  border-color: #5ca8ff;
+  box-shadow: 0 0 0 3px rgba(92,168,255,.15);
+}
+#seguridad-page button[type="submit"] {
+  margin-top: .5rem;
+  display: inline-block;
+  background: linear-gradient(180deg,#2b87ff,#1a62d6);
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: .6rem .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .06s ease, filter .2s ease;
+}
+#seguridad-page button[type="submit"]:hover { filter: brightness(1.07); }
+#seguridad-page button[type="submit"]:active { transform: translateY(1px); }
+
+/* Caja del QR generado */
+#seguridad-page .qr-box {
+  margin-top: .75rem;
+  padding: .75rem;
+  background: #0f1a2e;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  text-align: center;
+}
+#seguridad-page .qr-box img {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: .25rem auto .5rem;
+}
+#seguridad-page .qr-box p {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: .9rem;
+  color: #9fc1ff;
+  word-break: break-all;
+}
+
+/* Tabla Mis visitas */
+#seguridad-page table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 12px;
+}
+#seguridad-page thead th {
+  text-align: left;
+  font-size: .85rem;
+  letter-spacing: .3px;
+  color: #bcd3ff;
+  background: #122039;
+  padding: .6rem .7rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+#seguridad-page tbody td {
+  padding: .55rem .7rem;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  color: #e6eef7;
+  font-size: .92rem;
+}
+#seguridad-page tbody tr:nth-child(odd) {
+  background: rgba(255,255,255,.02);
+}
+#seguridad-page tbody tr:hover {
+  background: rgba(92,168,255,.08);
+}
+/* Seguridad: estados y botones */
+#seguridad-page tr.alerta-dentro {
+  background: rgba(255, 193, 7, .08); /* amarillito suave */
+}
+#seguridad-page tr.alerta-dentro .estado {
+  color: #ffc107;
+  font-weight: 700;
+}
+#seguridad-page .texto-muted {
+  opacity: .6;
+}
+#seguridad-page .btn-egreso {
+  background: #e53935;
+  color: #fff;
+  border: 0;
+  padding: .45rem .7rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+#seguridad-page .btn-egreso:hover { filter: brightness(1.05); }
+#seguridad-page .btn-egreso:disabled { opacity: .6; cursor: default; }
+
+/* Toolbar de exportación (Seguridad/Admin) */
+#seguridad-page .toolbar {
+  display: flex;
+  gap: .5rem;
+  margin: .25rem 0 .75rem;
+  flex-wrap: wrap;
+}
+#seguridad-page .toolbar button {
+  background: #0e6b2f;
+  color: #fff;
+  border: 0;
+  padding: .5rem .75rem;
+  border-radius: .5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+#seguridad-page .toolbar button:hover { filter: brightness(1.06); }
+#seguridad-page .toolbar #btn-export-pdf { background: #1a62d6; }
+
+
+
+
+
 /* Animación */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -937,8 +1169,6 @@ main[data-need-role="admin"] #pager .page-item.disabled .page-link {
 
 
 
-=======
->>>>>>> 83b2b4ad936fed34256f9bcd0a6df41b0eb1f7a8
 /*//////////////////////////////////////// --- Media queries que sí tocan clases usadas en este HTML --- //////////////////////////////*/
 @media (max-width: 992px){
   .menulogo{ display: none; }
@@ -1006,6 +1236,17 @@ main[data-need-role="admin"] #pager .page-item.disabled .page-link {
   }
   .Recup .send-btn {
     padding: 10px 12px;
+  }
+}
+
+/*////////////////////////media queries para seguridad.html//////////////////////*/
+/* Responsive */
+@media (max-width: 720px) {
+  #seguridad-page #form-visita .grid {
+    grid-template-columns: 1fr;
+  }
+  #seguridad-page header nav {
+    gap: .4rem;
   }
 }
 
