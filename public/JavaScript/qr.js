@@ -5,6 +5,7 @@ if (!token) window.location.href = '/index.html';
 let me = null;
 let countdown = 60;
 let tHandle = null;
+let qrInstance = null; // ← única instancia global
 
 async function fetchMe() {
   const res = await fetch('/api/auth/me', { headers: { Authorization: 'Bearer ' + token } });
@@ -24,11 +25,27 @@ async function issueQrUrl() {
 }
 
 async function drawQR() {
-  const el = document.getElementById('qrcode');
-  el.innerHTML = '';
-  const { url, exp } = await issueQrUrl();
-  new QRCode(el, { text: url, width: 240, height: 240, correctLevel: QRCode.CorrectLevel.M });
+  const box = document.getElementById('qrcode');
 
+  // emitir nueva URL
+  const { url, exp } = await issueQrUrl();
+
+  // crear instancia una vez y luego reutilizar
+  if (!qrInstance) {
+    // limpiar por las dudas si había algo renderizado
+    box.innerHTML = '';
+    qrInstance = new QRCode(box, {
+      text: url,                    // se reemplaza abajo igual
+      width: 240,
+      height: 240,
+      correctLevel: QRCode.CorrectLevel.M,
+    });
+  }
+  // reemplazar el código (evita apilar nodos)
+  if (qrInstance.clear) qrInstance.clear();
+  if (qrInstance.makeCode) qrInstance.makeCode(url);
+
+  // manejar cuenta regresiva y único intervalo
   countdown = Math.max(0, Math.floor(exp - Date.now() / 1000));
   updateCountdown();
 
@@ -36,19 +53,28 @@ async function drawQR() {
   tHandle = setInterval(() => {
     countdown--;
     updateCountdown();
-    if (countdown <= 0) drawQR(); // regen
+    if (countdown <= 0) {
+      clearInterval(tHandle);
+      tHandle = null;
+      // reemitir y redibujar
+      drawQR().catch(console.error);
+    }
   }, 1000);
 }
 
 function updateCountdown() {
-  document.getElementById('qrExpire').textContent = 'Vence en: ' + countdown + 's';
+  const el = document.getElementById('qrExpire');
+  if (el) el.textContent = 'Vence en: ' + countdown + 's';
 }
 
 // eventos
 document.getElementById('btnRefresh')?.addEventListener('click', (e) => {
   e.preventDefault();
-  drawQR();
+  // forzar regeneración inmediata sin duplicar nada
+  if (tHandle) { clearInterval(tHandle); tHandle = null; }
+  drawQR().catch(console.error);
 });
+
 document.getElementById('logoutBtn')?.addEventListener('click', (e) => {
   e.preventDefault();
   localStorage.removeItem('token');
@@ -65,6 +91,7 @@ document.getElementById('logoutBtn')?.addEventListener('click', (e) => {
     window.location.href = '/index.html';
   }
 })();
+
 
 
 // Qué hace (resumen)
