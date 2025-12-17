@@ -4,21 +4,32 @@ const router = express.Router();
 const db = require('./db');
 const { requireAuth, requireRole } = require('./authorize');
 
-// Crear ingreso manual (DENTRO)
+/* ==============================
+   Crear ingreso manual (DENTRO)
+   ============================== */
 router.post('/',
   requireAuth(),
   requireRole('SEGURIDAD', 'ADMIN'),
   async (req, res) => {
     try {
       const { nombre, dni, celular, motivo } = req.body;
+
       if (!nombre || !dni || !celular || !motivo) {
         return res.status(400).json({ error: 'Faltan campos' });
       }
+
       await db.query(
         `INSERT INTO ingresos (nombre, dni, celular, motivo, created_by)
          VALUES (?,?,?,?,?)`,
-        [nombre.trim(), dni.trim(), celular.trim(), motivo.trim(), req.user.id]
+        [
+          nombre.trim(),
+          dni.trim(),
+          celular.trim(),
+          motivo.trim(),
+          req.user.id
+        ]
       );
+
       res.json({ ok: true });
     } catch (e) {
       console.error(e);
@@ -27,7 +38,10 @@ router.post('/',
   }
 );
 
-// GET /api/ingresos  => lista paginada + total (incluye duration_seconds)
+/* ==================================================
+   GET /api/ingresos
+   Lista paginada + total + creado_por
+   ================================================== */
 router.get('/',
   requireAuth(),
   requireRole('SEGURIDAD', 'ADMIN'),
@@ -37,13 +51,26 @@ router.get('/',
       const pageSize = Math.min(1000, Math.max(1, parseInt(req.query.pageSize || '10', 10)));
       const offset = (page - 1) * pageSize;
 
-      const [totRows] = await db.query(`SELECT COUNT(*) AS total FROM ingresos`);
+      const [totRows] = await db.query(
+        `SELECT COUNT(*) AS total FROM ingresos`
+      );
       const total = Number(totRows?.[0]?.total || 0);
 
       const [rows] = await db.query(
-        `SELECT id, nombre, dni, celular, motivo, ingreso_at, egreso_at, estado, duration_seconds
-         FROM ingresos
-         ORDER BY ingreso_at DESC
+        `SELECT
+           i.id,
+           i.nombre,
+           i.dni,
+           i.celular,
+           i.motivo,
+           i.ingreso_at,
+           i.egreso_at,
+           i.estado,
+           i.duration_seconds,
+           CONCAT(u.nombre, ' ', u.apellido) AS creado_por
+         FROM ingresos i
+         LEFT JOIN users u ON u.id = i.created_by
+         ORDER BY i.ingreso_at DESC
          LIMIT ? OFFSET ?`,
         [pageSize, offset]
       );
@@ -56,18 +83,30 @@ router.get('/',
   }
 );
 
-// Listar sólo activos (DENTRO)
+/* ==========================================
+   GET /api/ingresos/activos (DENTRO)
+   ========================================== */
 router.get('/activos',
   requireAuth(),
   requireRole('SEGURIDAD', 'ADMIN'),
   async (req, res) => {
     try {
       const [rows] = await db.query(
-        `SELECT id, nombre, dni, celular, motivo, ingreso_at, estado
-         FROM ingresos
-         WHERE estado = 'DENTRO'
-         ORDER BY ingreso_at DESC`
+        `SELECT
+           i.id,
+           i.nombre,
+           i.dni,
+           i.celular,
+           i.motivo,
+           i.ingreso_at,
+           i.estado,
+           CONCAT(u.nombre, ' ', u.apellido) AS creado_por
+         FROM ingresos i
+         LEFT JOIN users u ON u.id = i.created_by
+         WHERE i.estado = 'DENTRO'
+         ORDER BY i.ingreso_at DESC`
       );
+
       res.json(rows);
     } catch (e) {
       console.error(e);
@@ -76,15 +115,27 @@ router.get('/activos',
   }
 );
 
-// Marcar egreso (guarda duration_seconds)
+/* ==========================================
+   Marcar egreso (guarda duration_seconds)
+   ========================================== */
 router.patch('/:id/egreso',
   requireAuth(),
   requireRole('SEGURIDAD', 'ADMIN'),
   async (req, res) => {
     try {
       const { id } = req.params;
-      const [rows] = await db.query(`SELECT id, estado, ingreso_at FROM ingresos WHERE id = ?`, [id]);
-      if (!rows || !rows[0]) return res.status(404).json({ error: 'Ingreso no encontrado' });
+
+      const [rows] = await db.query(
+        `SELECT id, estado, ingreso_at
+         FROM ingresos
+         WHERE id = ?`,
+        [id]
+      );
+
+      if (!rows || !rows[0]) {
+        return res.status(404).json({ error: 'Ingreso no encontrado' });
+      }
+
       if (rows[0].estado === 'FUERA') {
         return res.status(409).json({ error: 'Ya registrado como FUERA' });
       }
@@ -97,6 +148,7 @@ router.patch('/:id/egreso',
          WHERE id = ?`,
         [id]
       );
+
       res.json({ ok: true });
     } catch (e) {
       console.error(e);

@@ -2393,3 +2393,47 @@ body {
 
 
 
+/* =====================================================
+   FIX TABLA INGRESOS (solo Seguridad)
+   ===================================================== */
+
+/* Fondo general de la tabla */
+#seguridad-page #tabla-ingresos {
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Cabecera */
+#seguridad-page #tabla-ingresos thead th {
+  background-color: #f1f5f9 !important;
+  color: #000000 !important;
+  font-weight: 700;
+  border-bottom: 1px solid #dee2e6 !important;
+}
+
+/* Celdas */
+#seguridad-page #tabla-ingresos tbody td {
+  color: #000000 !important;      /* ← CLAVE */
+  background-color: transparent;
+  border-color: #dee2e6 !important;
+  font-size: 0.9rem;
+}
+
+/* Rayado (reemplaza table-striped oscuro) */
+#seguridad-page #tabla-ingresos tbody tr:nth-child(odd) {
+  background-color: #f8f9fa !important;
+}
+#seguridad-page #tabla-ingresos tbody tr:nth-child(even) {
+  background-color: #ffffff !important;
+}
+
+/* Hover */
+#seguridad-page #tabla-ingresos tbody tr:hover {
+  background-color: #e9ecef !important;
+}
+
+/* Estado */
+#seguridad-page #tabla-ingresos .estado {
+  font-weight: 700;
+}

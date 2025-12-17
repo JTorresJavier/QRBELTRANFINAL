@@ -31,16 +31,22 @@
       applyRoleUI(user);
 
       // 👉 validar rol requerido por la página
-      if (requiredRole) {
-        const role = (user.role || '').toLowerCase();
-        if (role !== requiredRole) {
-          return redirect(
-            role === 'admin'
-              ? '/paginas/admin.html'
-              : '/paginas/inicio.html'
-          );
-        }
-      }
+if (requiredRole) {
+  const role = (user.role || '').toLowerCase();
+
+  // permite: "seguridad,admin"
+  const allowedRoles = requiredRole
+    .split(',')
+    .map(r => r.trim().toLowerCase());
+
+  if (!allowedRoles.includes(role)) {
+    return redirect(
+      role === 'admin'
+        ? '/paginas/admin.html'
+        : '/paginas/inicio.html'
+    );
+  }
+}
 
     } catch (err) {
       localStorage.removeItem('token');

@@ -27,7 +27,7 @@
   // Modal y formulario
   const $modalClase = new bootstrap.Modal(document.getElementById('modalClase'));
   const $formClase = document.getElementById('formClase');
-  const $inputSubject = document.getElementById('inputSubject'); // ahora debe ser <select>
+  const $inputSubject = document.getElementById('inputSubject');
   const $inputTeacher = document.getElementById('inputTeacher');
   const $inputDay = document.getElementById('inputDay');
   const $inputStart = document.getElementById('inputStart');
@@ -41,12 +41,16 @@
   // FETCH
   // -----------------------------
   async function fetchSubjects() {
-    const res = await fetch('/api/admin/subjects', {
-      headers: { Authorization: 'Bearer ' + token() }
-    });
-    if (!res.ok) throw new Error('Error al obtener materias');
-    SUBJECTS = await res.json();
-    renderSubjects();
+    try {
+      const res = await fetch('/api/admin/subjects', {
+        headers: { Authorization: 'Bearer ' + token() }
+      });
+      if (!res.ok) throw new Error('Error al obtener materias');
+      SUBJECTS = await res.json();
+      if (isAdmin()) renderSubjects();
+    } catch(err) {
+      console.warn('No se pudieron cargar las materias', err);
+    }
   }
 
   function renderSubjects() {
@@ -54,7 +58,7 @@
     clear($inputSubject);
     SUBJECTS.forEach(s => {
       const opt = document.createElement('option');
-      opt.value = s.id;          // subject_id
+      opt.value = s.id;
       opt.textContent = `${s.name} · Año ${s.anio}`;
       $inputSubject.appendChild(opt);
     });
@@ -153,7 +157,7 @@
   // -----------------------------
   function openModal(cls = {}) {
     currentClass = cls;
-    $inputSubject.value = cls.subject_id || ''; // usar subject_id
+    $inputSubject.value = cls.subject_id || '';
     $inputTeacher.value = cls.teacher || '';
     $inputDay.value = cls.day || 'lun';
     $inputStart.value = cls.start || '';
@@ -163,11 +167,11 @@
 
   async function saveClass(cls, inputs) {
     const payload = {
-      subject_id: inputs.subject.value, // importante
+      subject_id: inputs.subject.value,
       teacher: inputs.teacher.value,
       day: inputs.day.value,
-      start_time: inputs.start.value,   // backend espera start_time
-      end_time: inputs.end.value,       // backend espera end_time
+      start_time: inputs.start.value,
+      end_time: inputs.end.value,
       anio: meta.anio,
       turno: meta.turno
     };
@@ -270,8 +274,8 @@
   });
 
   document.getElementById('calModal')?.addEventListener('show.bs.modal', async () => {
-    await fetchSubjects();  // primero cargar materias
-    await fetchSchedule();
+    await fetchSubjects();   // carga materias, si no es admin no rompe
+    await fetchSchedule();   // siempre carga horario
     cur = new Date();
     renderMonth(cur);
     renderGrilla();
