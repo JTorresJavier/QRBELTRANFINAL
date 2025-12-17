@@ -33,8 +33,17 @@ app.use(helmet({
   crossOriginEmbedderPolicy: false, // evita bloqueos en dev
 }));
 
-app.use(cors());                    // si servís todo desde /public, podrías quitarlo
+app.use(cors());
 app.use(express.json());
+
+// ★ NEW – Middleware para evitar cache en páginas protegidas
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
+  res.set('Surrogate-Control', 'no-store');
+  next();
+});
 
 // ★ NEW – opcional: responder vacío al favicon para evitar warnings
 app.get('/favicon.ico', (_req, res) => res.status(204).end());
@@ -42,7 +51,7 @@ app.get('/favicon.ico', (_req, res) => res.status(204).end());
 // Rutas de recuperación de contraseña
 app.use('/api/auth/recovery', recoveryRoutes);
 
-// API
+// API de autenticación
 app.use('/api/auth', authRoutes);
 
 // Rutas de QR
@@ -65,7 +74,6 @@ app.use('/api/visitas', visitasRoutes);
 
 // Rutas de ingresos
 app.use('/api/ingresos', ingresosRoutes);
-
 
 // fallback opcional: servir index si piden rutas sin extensión
 // app.get(/^\/(?!api\/).*(?!\.[a-zA-Z0-9]+)$/, (req, res) => {

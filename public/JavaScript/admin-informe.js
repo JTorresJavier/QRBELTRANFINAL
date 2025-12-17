@@ -294,3 +294,19 @@
   // init
   load();
 })();
+
+
+
+/*
+
+        <div class="col-sm-2">
+          <label class="form-label">Rol</label>
+          <select id="rol" class="form-select">
+            <option value="">(NO FUNCIONA NADA) [Todos] </option>
+            <option value="seguridad">Seguridad</option>
+            <option value="estudiante">Estudiante</option>
+          </select>
+        </div>
+
+        
+*/

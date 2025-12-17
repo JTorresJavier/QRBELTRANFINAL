@@ -1,8 +1,12 @@
 // public/JavaScript/common.js
 (function () {
+
   const needsAuth = document.querySelector('[data-need-auth="1"]') !== null;
   const roleEl = document.querySelector('[data-need-role]');
-  const requiredRole = roleEl ? (roleEl.getAttribute('data-need-role') || '').toLowerCase() : '';
+  const requiredRole = roleEl
+    ? (roleEl.getAttribute('data-need-role') || '').toLowerCase()
+    : '';
+
   const token = localStorage.getItem('token');
 
   async function ensureAuthAndRole() {
@@ -13,26 +17,68 @@
       const res = await fetch('/api/auth/me', {
         headers: { Authorization: 'Bearer ' + token }
       });
+
       if (!res.ok) throw new Error('unauth');
 
       const { user } = await res.json();
       window.CURRENT_USER = user; // disponible globalmente
 
+      // 👉 mostrar contenido protegido solo si el token es válido
+      const main = document.querySelector('[data-need-auth="1"]');
+      if (main) main.classList.add('show');
+
+      // 👉 aplicar UI según rol
+      applyRoleUI(user);
+
+      // 👉 validar rol requerido por la página
       if (requiredRole) {
         const role = (user.role || '').toLowerCase();
         if (role !== requiredRole) {
-          // si no coincide, redirigí a la página que le corresponde
-          return redirect(role === 'admin' ? '/paginas/admin.html' : '/paginas/inicio.html');
+          return redirect(
+            role === 'admin'
+              ? '/paginas/admin.html'
+              : '/paginas/inicio.html'
+          );
         }
       }
-    } catch {
+
+    } catch (err) {
       localStorage.removeItem('token');
       return redirect('/index.html');
     }
   }
 
+  function applyRoleUI(user) {
+    const role = (user.role || '').toLowerCase();
+
+    // Elementos solo admin
+    document.querySelectorAll('.nav-admin').forEach(el => {
+      if (role === 'admin') {
+        el.style.display = 'block';
+      } else {
+        el.remove(); // opcional, podés dejar solo display:none
+      }
+    });
+
+    // Elementos solo seguridad
+    document.querySelectorAll('.nav-seguridad').forEach(el => {
+      if (role === 'seguridad') {
+        el.style.display = 'block';
+      } else {
+        el.remove(); // opcional, podés dejar solo display:none
+      }
+    });
+
+    // (Preparado para el futuro)
+    // document.querySelectorAll('.nav-seguridad').forEach(el => {
+    //   if (role !== 'seguridad') el.remove();
+    // });
+  }
+
   function redirect(path) {
-    if (location.pathname !== path) location.href = path;
+    if (location.pathname !== path) {
+      location.href = path;
+    }
   }
 
   // Logout global
@@ -49,6 +95,7 @@
 
   // init
   ensureAuthAndRole();
+
 })();
 
 

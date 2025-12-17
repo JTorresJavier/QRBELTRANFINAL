@@ -41,6 +41,7 @@ async function drawQR() {
       correctLevel: QRCode.CorrectLevel.M,
     });
   }
+  
   // reemplazar el código (evita apilar nodos)
   if (qrInstance.clear) qrInstance.clear();
   if (qrInstance.makeCode) qrInstance.makeCode(url);
@@ -48,7 +49,7 @@ async function drawQR() {
   // manejar cuenta regresiva y único intervalo
   countdown = Math.max(0, Math.floor(exp - Date.now() / 1000));
   updateCountdown();
-
+console.log(url);
   if (tHandle) clearInterval(tHandle);
   tHandle = setInterval(() => {
     countdown--;
