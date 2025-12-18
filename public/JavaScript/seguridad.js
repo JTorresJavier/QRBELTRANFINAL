@@ -115,7 +115,7 @@ tr.innerHTML = `
   <td>${row.creado_por || '—'}</td>
   <td>
     ${row.estado === 'DENTRO'
-      ? `<button class="btn-egreso" data-id="${row.id}">Egreso</button>`
+      ? `<button class="btn-egreso nav-seguridad" data-id="${row.id}">Egreso</button>`
       : '—'}
   </td>
 `;

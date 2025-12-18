@@ -29,6 +29,16 @@ body {
   display: none;
 }
 
+/* Visible solo para seguridad */
+body.role-seguridad .nav-seguridad {
+  display: inline-block;
+}
+
+/* Visible solo para admin */
+body.role-admin .nav-admin {
+  display: inline-block;
+}
+
 /*////////////////////////////////// --- INDEX.HTML --- ////////////////////////////////////////////////*/
 
 .Login .login-wrapper {

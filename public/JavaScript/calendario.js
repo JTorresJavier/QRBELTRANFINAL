@@ -12,10 +12,9 @@
   let WEEKLY = {};
   let meta = { anio:null, turno:null };
   let cur = new Date();
-  let currentClass = null; // clase que estamos editando o agregando
-  let SUBJECTS = []; // materias para el select
+  let currentClass = null; 
+  let SUBJECTS = [];
 
-  // DOM
   const $title = document.getElementById('calTitle');
   const $grid = document.getElementById('calMes');
   const $grilla = document.getElementById('calGrilla');
@@ -24,7 +23,6 @@
   const $btnGrid = document.getElementById('btnVistaGrilla');
   const $btnAdd = document.getElementById('btnAgregarClase');
 
-  // Modal y formulario
   const $modalClase = new bootstrap.Modal(document.getElementById('modalClase'));
   const $formClase = document.getElementById('formClase');
   const $inputSubject = document.getElementById('inputSubject');
@@ -82,6 +80,7 @@
     clear($grid);
     const y = date.getFullYear();
     const m = date.getMonth();
+    const todayStr = date.toISOString().split('T')[0]; // YYYY-MM-DD
     $title.textContent = `${fullMonth(y,m)} · Año ${meta.anio} · Turno ${meta.turno}`;
 
     dayNames.forEach(n => {
@@ -98,8 +97,10 @@
     for (let d = 1; d <= days; d++) {
       const cell = document.createElement('div');
       cell.className = 'cal-cell';
-      const wd = tokenDay(new Date(y,m,d).getDay());
-      const items = WEEKLY[wd] || [];
+      const curDate = new Date(y,m,d);
+      const wd = tokenDay(curDate.getDay());
+      const curDateStr = curDate.toISOString().split('T')[0];
+      const items = (WEEKLY[wd] || []).filter(c => !c.date || c.date === curDateStr);
       cell.innerHTML = `<div class="cal-date">${d}</div>`;
 
       if (!items.length) cell.innerHTML += `<div class="cal-empty">—</div>`;
@@ -116,7 +117,7 @@
       });
 
       if (isAdmin()) {
-        cell.addEventListener('dblclick', () => openModal({ day: wd }));
+        cell.addEventListener('dblclick', () => openModal({ day: wd, date: curDateStr }));
       }
 
       $grid.appendChild(cell);
@@ -173,7 +174,8 @@
       start_time: inputs.start.value,
       end_time: inputs.end.value,
       anio: meta.anio,
-      turno: meta.turno
+      turno: meta.turno,
+      date: cls.date || null
     };
     const method = cls.id ? 'PUT' : 'POST';
     const url = cls.id ? `/api/admin/schedule/${cls.id}` : '/api/admin/schedule';
@@ -274,8 +276,8 @@
   });
 
   document.getElementById('calModal')?.addEventListener('show.bs.modal', async () => {
-    await fetchSubjects();   // carga materias, si no es admin no rompe
-    await fetchSchedule();   // siempre carga horario
+    await fetchSubjects();
+    await fetchSchedule();
     cur = new Date();
     renderMonth(cur);
     renderGrilla();

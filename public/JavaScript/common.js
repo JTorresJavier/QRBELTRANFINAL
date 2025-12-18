@@ -1,7 +1,13 @@
 // public/JavaScript/common.js
 (function () {
 
-  const needsAuth = document.querySelector('[data-need-auth="1"]') !== null;
+  /* ==============================
+     Config por página
+     ============================== */
+
+  const needsAuth =
+    document.querySelector('[data-need-auth="1"]') !== null;
+
   const roleEl = document.querySelector('[data-need-role]');
   const requiredRole = roleEl
     ? (roleEl.getAttribute('data-need-role') || '').toLowerCase()
@@ -9,8 +15,22 @@
 
   const token = localStorage.getItem('token');
 
+  /* ==============================
+     Init
+     ============================== */
+
+  ensureAuthAndRole();
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setupLogout();
+  });
+
+  /* ==============================
+     Auth + Role guard
+     ============================== */
+
   async function ensureAuthAndRole() {
-    if (!needsAuth) return;              // página pública
+    if (!needsAuth) return; // página pública
     if (!token) return redirect('/index.html');
 
     try {
@@ -18,89 +38,96 @@
         headers: { Authorization: 'Bearer ' + token }
       });
 
-      if (!res.ok) throw new Error('unauth');
+      if (!res.ok) throw new Error('unauthorized');
 
       const { user } = await res.json();
-      window.CURRENT_USER = user; // disponible globalmente
+      window.CURRENT_USER = user;
 
-      // 👉 mostrar contenido protegido solo si el token es válido
+      // Mostrar contenido protegido
       const main = document.querySelector('[data-need-auth="1"]');
       if (main) main.classList.add('show');
 
-      // 👉 aplicar UI según rol
+      // Aplicar UI por rol (CLASES EN BODY)
       applyRoleUI(user);
 
-      // 👉 validar rol requerido por la página
-if (requiredRole) {
-  const role = (user.role || '').toLowerCase();
-
-  // permite: "seguridad,admin"
-  const allowedRoles = requiredRole
-    .split(',')
-    .map(r => r.trim().toLowerCase());
-
-  if (!allowedRoles.includes(role)) {
-    return redirect(
-      role === 'admin'
-        ? '/paginas/admin.html'
-        : '/paginas/inicio.html'
-    );
-  }
-}
+      // Validar rol requerido por la página
+      if (requiredRole) {
+        validatePageRole(user.role, requiredRole);
+      }
 
     } catch (err) {
       localStorage.removeItem('token');
-      return redirect('/index.html');
+      redirect('/index.html');
     }
   }
+
+  /* ==============================
+     UI por rol (CLASES, NO DOM)
+     ============================== */
 
   function applyRoleUI(user) {
     const role = (user.role || '').toLowerCase();
 
-    // Elementos solo admin
-    document.querySelectorAll('.nav-admin').forEach(el => {
-      if (role === 'admin') {
-        el.style.display = 'block';
-      } else {
-        el.remove(); // opcional, podés dejar solo display:none
-      }
-    });
+    // limpiar
+    document.body.classList.remove(
+      'role-admin',
+      'role-seguridad'
+    );
 
-    // Elementos solo seguridad
-    document.querySelectorAll('.nav-seguridad').forEach(el => {
-      if (role === 'seguridad') {
-        el.style.display = 'block';
-      } else {
-        el.remove(); // opcional, podés dejar solo display:none
-      }
-    });
+    if (role === 'admin') {
+      document.body.classList.add('role-admin');
+    }
 
-    // (Preparado para el futuro)
-    // document.querySelectorAll('.nav-seguridad').forEach(el => {
-    //   if (role !== 'seguridad') el.remove();
-    // });
+    if (role === 'seguridad') {
+      document.body.classList.add('role-seguridad');
+    }
   }
+
+  /* ==============================
+     Validación de rol por página
+     ============================== */
+
+  function validatePageRole(userRole, requiredRole) {
+    const role = (userRole || '').toLowerCase();
+
+    // permite: data-need-role="seguridad,admin"
+    const allowedRoles = requiredRole
+      .split(',')
+      .map(r => r.trim().toLowerCase());
+
+    if (!allowedRoles.includes(role)) {
+      redirect(
+        role === 'admin'
+          ? '/paginas/admin.html'
+          : '/paginas/inicio.html'
+      );
+    }
+  }
+
+  /* ==============================
+     Logout centralizado
+     ============================== */
+
+  function setupLogout() {
+    const btn = document.getElementById('logoutBtn');
+    if (!btn) return;
+
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      localStorage.removeItem('token');
+      redirect('/index.html');
+    });
+  }
+
+  /* ==============================
+     Utils
+     ============================== */
 
   function redirect(path) {
     if (location.pathname !== path) {
       location.href = path;
     }
   }
-
-  // Logout global
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('logoutBtn');
-    if (btn) {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        localStorage.removeItem('token');
-        redirect('/index.html');
-      });
-    }
-  });
-
-  // init
-  ensureAuthAndRole();
 
 })();
 
