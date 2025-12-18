@@ -109,7 +109,7 @@ router.get('/schedule', authorize(), async (req, res) => {
 
     rows.forEach(r => {
       weekly[r.day].push({
-        id: r.id,           // ⭐ CLAVE PARA EDITAR / BORRAR
+        id: r.id,           
         subject: r.subject,
         teacher: r.teacher,
         start: r.start,

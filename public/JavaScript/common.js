@@ -61,10 +61,6 @@
     }
   }
 
-  /* ==============================
-     UI por rol (CLASES, NO DOM)
-     ============================== */
-
   function applyRoleUI(user) {
     const role = (user.role || '').toLowerCase();
 
@@ -82,10 +78,6 @@
       document.body.classList.add('role-seguridad');
     }
   }
-
-  /* ==============================
-     Validación de rol por página
-     ============================== */
 
   function validatePageRole(userRole, requiredRole) {
     const role = (userRole || '').toLowerCase();
@@ -131,41 +123,3 @@
 
 })();
 
-
-
-
-// IIFE (función autoejecutable)
-// Todo el código está dentro de una función que se ejecuta al cargar el archivo. Evita variables globales accidentales.
-
-// Guard de autenticación por página
-
-// Busca si la página tiene el atributo data-need-auth="1".
-
-// Si lo tiene, exige token en localStorage.
-
-// Valida el token llamando a /api/auth/me.
-
-// Si es válido, guarda el usuario en window.CURRENT_USER para usarlo en otras vistas.
-
-// Si falta o es inválido, borra el token y redirige a /index.html.
-
-// Logout centralizado
-
-// Al DOMContentLoaded, si existe #logoutBtn, registra el click.
-
-// Al hacer click: borra el token y redirige a /index.html.
-
-// Así evitás código duplicado de logout en cada página.
-
-// CSP-friendly (sin inline)
-// No usa onclick ni estilos inline, por lo que cumple con la Content-Security-Policy.
-
-// Cómo usarlo en una página
-
-// Marca el <main> (o contenedor principal) con data-need-auth="1" si requiere sesión.
-
-// Incluí <script src="/JavaScript/common.js" defer></script> al final del <body>.
-
-// (Opcional) Poné un botón con id="logoutBtn" para habilitar el cierre de sesión.
-
-// Nota: Este archivo es un lugar único para lógica global (auth y logout). Si más adelante necesitás chequeo de roles, podés extender acá para redirigir según CURRENT_USER.role.

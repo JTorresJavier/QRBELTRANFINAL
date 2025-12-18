@@ -5,23 +5,23 @@
   <title>Panel Seguridad</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="/styles/style.css" />
-  
+
+  <script src="/JavaScript/common.js" defer></script>
   <script defer src="../JavaScript/seguridad.js"></script>
 </head>
 <body id="seguridad-page">
   <header>
     <h1>Seguridad – Ingreso manual</h1>
-    <nav>
-      <!-- Dejá enlaces sólo propios de seguridad -->
-                  
-      <a class="nav-link menu-prop" aria-current="page" href="/paginas/QRGenerado.html">QR</a>   
+    <nav>             
+      <a class="nav-link menu-prop" aria-current="page" href="/paginas/QRGenerado.html">QR</a>
+      <a class="nav-link" href="/paginas/perfil.html">Perfil</a>  
       <a class="nav-link menu-prop" href="/paginas/inicio.html">Inicio</a>
       <a class="nav-link menu-prop" href="/paginas/Seguridad-visitas.html">Visitas</a>
-      <a href="#" id="btn-logout">Cerrar sesión</a>
+      <a href="#" id="logoutBtn" class="nav-link">Cerrar sesión</a>
     </nav>
   </header>
 
-  <main>
+  <main data-need-auth="1">
     <section class="card">
       <h2>Registrar Ingreso</h2>
       <form id="form-ingreso" autocomplete="off">

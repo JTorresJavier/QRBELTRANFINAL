@@ -1,4 +1,3 @@
-// public/JavaScript/admin-informe.js
 (function () {
   const token = localStorage.getItem('token');
   if (!token) return (location.href = '/index.html');
@@ -81,14 +80,11 @@
           ${r.within_shift ? 'Dentro de turno' : 'Fuera de turno'}
         </td>
         <td class="text-center">
-          <input
-            type="checkbox"
-            class="form-check-input selector-check"
-            data-id="${r.id}"
-          />
+          <input type="checkbox"
+                 class="form-check-input selector-check"
+                 data-id="${r.id}">
         </td>
       `;
-
       $tbody.appendChild(tr);
     }
   }
@@ -106,7 +102,7 @@
       a.className = 'page-link';
       a.href = '#';
       a.textContent = text;
-      a.onclick = (e) => {
+      a.onclick = e => {
         e.preventDefault();
         if (!disabled && p !== page) {
           page = p;
@@ -127,9 +123,7 @@
   function updateSortIndicators() {
     document.querySelectorAll('#tblLogs thead th[data-k]').forEach(th => {
       th.removeAttribute('data-sort');
-      if (th.dataset.k === sortBy) {
-        th.setAttribute('data-sort', sortDir);
-      }
+      if (th.dataset.k === sortBy) th.setAttribute('data-sort', sortDir);
     });
   }
 
@@ -150,7 +144,7 @@
       .map(ch => String(ch.dataset.id));
   }
 
-  $checkAll?.addEventListener('change', (e) => {
+  $checkAll?.addEventListener('change', e => {
     document.querySelectorAll('.selector-check').forEach(ch => {
       ch.checked = e.target.checked;
     });
@@ -161,8 +155,7 @@
   function getHeadersForExport() {
     const headers = Array.from(document.querySelectorAll('#tblLogs thead th'))
       .map(th => th.textContent.trim());
-    const IGNORE = new Set(['Selector']);
-    return headers.filter(h => !IGNORE.has(h));
+    return headers.filter(h => h !== 'Selector');
   }
 
   function mapRowForExport(r, headers) {
@@ -213,8 +206,7 @@
   async function getRowsForExport() {
     const selected = getSelectedIds();
     const all = await fetchAllRows(1000);
-    if (!selected.length) return all;
-    return all.filter(r => selected.includes(String(r.id)));
+    return selected.length ? all.filter(r => selected.includes(String(r.id))) : all;
   }
 
   function toCSV(headers, rows) {
@@ -234,48 +226,104 @@
     URL.revokeObjectURL(a.href);
   }
 
-  /* ===== EXCEL ===== */
 
-  document.getElementById('btn-admin-export-excel')?.addEventListener('click', async () => {
+/* ===== PDF  ===== */
+
+document.getElementById('btn-admin-export-pdf')
+  ?.addEventListener('click', async () => {
+
     const headers = getHeadersForExport();
     const data = await getRowsForExport();
     if (!data.length) return alert('No hay datos para exportar');
 
     const rows = data.map(r => mapRowForExport(r, headers));
-    const csv = toCSV(headers, rows);
-    downloadBlob(
-      `admin-logs-${new Date().toISOString().slice(0,16)}.csv`,
-      'text/csv;charset=utf-8',
-      csv
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF({
+      orientation: 'landscape',
+      unit: 'pt',
+      format: 'A4'
+    });
+
+    const title = 'Informe de accesos';
+    const fecha = new Date().toLocaleString('es-AR', { hour12: false });
+
+    doc.setFontSize(14);
+    doc.text(title, 40, 40);
+
+    doc.setFontSize(9);
+    doc.text(`Generado: ${fecha}`, 40, 58);
+
+    doc.autoTable({
+      startY: 70,
+      head: [headers],
+      body: rows,
+      styles: {
+        fontSize: 8,
+        cellPadding: 4
+      },
+      headStyles: {
+        fillColor: [230, 230, 230],
+        textColor: 20,
+        fontStyle: 'bold'
+      },
+      margin: { left: 40, right: 40 },
+      theme: 'grid'
+    });
+
+    doc.save(
+      `admin-logs-${new Date().toISOString().slice(0,16)}.pdf`
     );
   });
 
-  /* ===== PDF ===== */
 
-  document.getElementById('btn-admin-export-pdf')?.addEventListener('click', async () => {
-    const headers = getHeadersForExport();
-    const data = await getRowsForExport();
-    if (!data.length) return alert('No hay datos para exportar');
+  /* ===== CSV (Excel compatible) ===== */
 
-    const rows = data.map(r => mapRowForExport(r, headers));
-    const w = window.open('', '_blank');
+  document.getElementById('btn-admin-export-excel')
+    ?.addEventListener('click', async () => {
+      const headers = getHeadersForExport();
+      const data = await getRowsForExport();
+      if (!data.length) return alert('No hay datos para exportar');
 
-    w.document.write(`
-      <html>
-      <head>
-        <link rel="stylesheet" href="/styles/print-export.css">
-      </head>
-      <body>
-        <h3>Informe de accesos</h3>
-        <table>
-          <thead><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead>
-          <tbody>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>
-        </table>
-      </body>
-      </html>
-    `);
-    w.print();
-  });
+      const rows = data.map(r => mapRowForExport(r, headers));
+      const csv = '\uFEFF' + toCSV(headers, rows);
+
+      downloadBlob(
+        `admin-logs-${new Date().toISOString().slice(0,16)}.csv`,
+        'text/csv;charset=utf-8',
+        csv
+      );
+    });
+
+  /* ===== EXCEL REAL (.xlsx) ===== */
+
+  document.getElementById('btn-admin-export-xlsx')
+    ?.addEventListener('click', async () => {
+      const headers = getHeadersForExport();
+      const data = await getRowsForExport();
+      if (!data.length) return alert('No hay datos para exportar');
+
+      const rows = data.map(r => mapRowForExport(r, headers));
+      const sheetData = [headers, ...rows];
+
+      const ws = XLSX.utils.aoa_to_sheet(sheetData);
+
+      ws['!cols'] = headers.map((h, i) => ({
+        wch: Math.max(
+          h.length,
+          ...rows.map(r => String(r[i] ?? '').length)
+        ) + 2
+      }));
+
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Informe');
+
+      XLSX.writeFile(
+        wb,
+        `admin-logs-${new Date().toISOString().slice(0,16)}.xlsx`
+      );
+    });
 
   /* ===================== FILTROS ===================== */
 

@@ -14,7 +14,7 @@
       case 'mañana': return minutes >= M0 && minutes < M1;
       case 'tarde':  return minutes >= T0 && minutes < T1;
       case 'noche':  return minutes >= N0 && minutes < N1;
-      default:       return false; // sin turno cargado => fuera
+      default:       return false;
     }
   }
 

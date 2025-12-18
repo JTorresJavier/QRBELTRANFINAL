@@ -21,24 +21,37 @@ body {
   margin-bottom: 130px;
 }
 
-/* Oculto por defecto  */
-.nav-admin {
-  display: none;
-}
+/* =======================
+   Oculto por defecto
+   ======================= */
+.nav-admin,
 .nav-seguridad {
-  display: none;
+  display: none !important;
 }
 
-/* Visible solo para seguridad */
+/* =======================
+   Visible solo para seguridad
+   ======================= */
 body.role-seguridad .nav-seguridad {
-  display: inline-block;
+  display: inline-block !important; /* o inline-flex si los botones necesitan flex */
 }
 
-/* Visible solo para admin */
+/* =======================
+   Visible solo para admin
+   ======================= */
 body.role-admin .nav-admin {
-  display: inline-block;
+  display: inline-block !important; /* o inline-flex */
 }
 
+/* =======================
+   Ocultar calendario, grilla y noticias para seguridad
+   ======================= */
+body.role-seguridad #calModal,
+body.role-seguridad #calMes,
+body.role-seguridad #calGrilla,
+body.role-seguridad .noticias {
+  display: none !important;
+}
 /*////////////////////////////////// --- INDEX.HTML --- ////////////////////////////////////////////////*/
 
 .Login .login-wrapper {

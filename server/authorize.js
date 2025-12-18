@@ -1,13 +1,5 @@
 const jwt = require('jsonwebtoken');
 
-/**
- * authorize([roles]) valida JWT (Authorization: Bearer <token>)
- * y opcionalmente restringe por rol.
- *
- * Ejemplos:
- *   app.get('/api/privado', authorize(), handler);
- *   app.get('/api/admin',   authorize(['ADMIN']), handler);
- */
 function authorize(allowedRoles = []) {
   return (req, res, next) => {
     try {

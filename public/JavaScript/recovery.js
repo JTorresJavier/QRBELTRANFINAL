@@ -3,8 +3,6 @@ console.log('[recovery] script cargado');
 
 const recupForm = document.getElementById('recupForm');
 const recupMsg  = document.getElementById('recupMsg');
-
-// Detectar si estoy servido por el backend (3000) o por Live Server (5500)
 const isBackendOrigin = location.origin.includes(':3000');
 const API_BASE = isBackendOrigin ? '' : 'http://localhost:3000';
 
@@ -22,10 +20,9 @@ recupForm?.addEventListener('submit', async (e) => {
       body: JSON.stringify({ identifier })
     });
 
-    const txt = await r.text(); // para ver respuesta cruda si hay HTML por error
+    const txt = await r.text(); 
     console.log('[recovery] status', r.status, 'body', txt);
 
-    // Mensaje neutro (no revelar existencia)
     recupMsg.textContent = 'Si existe la cuenta, te enviamos un correo con instrucciones.';
   } catch (err) {
     console.error('[recovery] error', err);
